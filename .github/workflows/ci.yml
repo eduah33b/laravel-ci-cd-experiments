@@ -56,6 +56,11 @@ jobs:
         php artisan config:clear
         composer dump-autoload && php artisan clear-compiled && php artisan optimize
 
+    - name: Set Branch and Commit SHA
+      run: |
+        echo "::set-env name=GIT_BRANCH::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')"
+        echo "::set-env name=GIT_COMMIT_SHA::$(echo ${git rev-parse --short "$GITHUB_SHA"})"
+
     - name: Install front-end dependencies
       run: |
         npm install
@@ -75,7 +80,12 @@ jobs:
         php artisan serve --host=lrtest.test --port=8000 &
         sleep 5
 
-    - name: Run Dusk Testsuite
+    #- name: Run Dusk Testsuite
+    #  run: |
+    #    curl -vk http://lrtest.test:8000
+    #    php artisan dusk --colors --debug
+
+
+    - name: Run PHP Unit
       run: |
-        curl -vk http://lrtest.test:8000
-        php artisan dusk --colors --debug
+        vendor/bin/phpunit --coverage-html reports       
