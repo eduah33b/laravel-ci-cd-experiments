@@ -33,7 +33,7 @@ jobs:
         #php-versions: ['7.2', '7.3', '7.4']
         php-versions: ['7.4']
         include:
-          - report-coverage: true
+          - php-version: '7.0'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -92,7 +92,6 @@ jobs:
           sleep 5
 
       - name: Test and publish code coverage
-        if: matrix.report-coverage
         uses: paambaati/codeclimate-action@v2.3.0
         env:
           # Get it on https://codeclimate.com/repos/{repo id}/settings/test_reporter
@@ -102,5 +101,4 @@ jobs:
           coverageCommand: php vendor/bin/phpunit --coverage-text --coverage-clover ./clover.xml
           debug: true
       - name: Test
-        if: "!matrix.report-coverage"
         run: php vendor/bin/phpunit --coverage-text    
