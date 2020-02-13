@@ -17,8 +17,11 @@
         "facade/ignition": "^1.4",
         "fzaninotto/faker": "^1.9.1",
         "mockery/mockery": "^1.0",
+        "phpunit/phpunit": "^9.0",
         "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^8.0"
+        "laravel/dusk": "^5.9",
+        "nunomaduro/larastan": "^0.5.2",
+        "staudenmeir/dusk-updater": "^1.2"
     },
     "config": {
         "optimize-autoloader": true,
