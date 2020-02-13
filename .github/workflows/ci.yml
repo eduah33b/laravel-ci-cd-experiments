@@ -99,4 +99,4 @@ jobs:
           coverageCommand: vendor/bin/phpunit --coverage-text --coverage-clover ./clover.xml
           debug: true
       - name: Test
-        run: vendor/bin/phpunit --coverage-text    
+        run: vendor/bin/phpunit --coverage-text 
