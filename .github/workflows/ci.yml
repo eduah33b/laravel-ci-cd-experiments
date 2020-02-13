@@ -96,7 +96,7 @@ jobs:
           CC_TEST_REPORTER_ID: 27681cd463198a5982ce44d5c19976f9f9b0e0e33dfec4bb781709ac064cd871
         with:
           # The report file must be there, otherwise Code Climate won't find it
-          coverageCommand: php vendor/bin/phpunit --coverage-text --coverage-clover ./clover.xml
+          coverageCommand: vendor/bin/phpunit --coverage-text --coverage-clover ./clover.xml
           debug: true
       - name: Test
-        run: php vendor/bin/phpunit --coverage-text    
+        run: vendor/bin/phpunit --coverage-text    
