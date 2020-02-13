@@ -77,20 +77,12 @@ jobs:
           DB_PORT: ${{ job.services.mysql.ports['3306'] }}
           REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
 
-      - name: Install artisan dusk
-        run: |
-          php artisan dusk:install
-          php artisan dusk:chrome-driver
-
-      - name: Serve Site
-        run: |
-          php artisan serve --host=lrtest.test --port=8000 &
-          sleep 5   
           
       - name: Prepare Test Reporter
-        run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter 
-            chmod +x ./cc-test-reporter 
-            ./cc-test-reporter before-build
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter 
+          chmod +x ./cc-test-reporter 
+          ./cc-test-reporter before-build
 
       - name: Test with phpunit
         run: vendor/bin/phpunit --coverage-clover=coverage.xml
