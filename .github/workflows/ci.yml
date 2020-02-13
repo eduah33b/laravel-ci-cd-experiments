@@ -87,7 +87,16 @@ jobs:
           php artisan serve --host=lrtest.test --port=8000 &
           sleep 5          
       - name: Test with phpunit
-        run: vendor/bin/phpunit --coverage-text
+        run: vendor/bin/phpunit --coverage-clover=coverage.xml
+       
         env:
           DB_PORT: ${{ job.services.mysql.ports['3306'] }}
           REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
+          CC_TEST_REPORTER_ID: 27681cd463198a5982ce44d5c19976f9f9b0e0e33dfec4bb781709ac064cd871
+
+      - name: Set up Post to Test Reporter
+        run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter before-build
+          ./cc-test-reporter format-coverage -t clover
+          ./cc-test-reporter upload-coverage -d          
