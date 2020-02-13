@@ -99,4 +99,4 @@ jobs:
 
       - name: Publish to Test Reporter
         run: |
-          ./cc-test-reporter after-build --coverage-input-type clover --id 12345        
+          ./cc-test-reporter after-build --coverage-input-type clover -i ./clover.xml       
