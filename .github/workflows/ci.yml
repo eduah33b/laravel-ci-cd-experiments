@@ -33,7 +33,7 @@ jobs:
         #php-versions: ['7.2', '7.3', '7.4']
         php-versions: ['7.4']
         include:
-          report-coverage: true
+          - report-coverage: true
     steps:
       - name: Checkout
         uses: actions/checkout@v2
