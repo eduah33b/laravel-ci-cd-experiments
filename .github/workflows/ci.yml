@@ -21,6 +21,23 @@ jobs:
       with:
         fetch-depth: 1
 
+    - name: Install Xdebug
+      uses: shivammathur/setup-php@v1
+      with:
+        php-version: '7.4'
+        #extensions: mbstring, intl #optional, setup extensions
+        #ini-values: post_max_size=256M, short_open_tag=On #optional, setup php.ini configuration
+        coverage: xdebug #optional, setup coverage driver
+        #pecl: false #optional, setup PECL
+
+    #- name: Enable Xdebug
+    #  run: | 
+    #    phpenmod xdebug  
+
+    - name: Check PHP Extensions
+        run: | 
+          php -m           
+        
     - name: Get Composer Cache Directory
       id: composer-cache
       run: |
