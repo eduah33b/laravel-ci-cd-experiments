@@ -52,6 +52,8 @@ jobs:
       run: |
         cp .env.ci .env
         php artisan key:generate
+        php artisan config:clear
+        composer dump-autoload && php artisan clear-compiled && php artisan optimize
 
     - name: Install front-end dependencies
       run: |
